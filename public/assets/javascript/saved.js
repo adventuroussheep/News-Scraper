@@ -18,6 +18,7 @@ $(function() {
     });
   });
 
+
   // Modal for removing article
   $(".deleteSavedArticleModalButton").on("click", function(event) {
     event.preventDefault();
@@ -31,10 +32,16 @@ $(function() {
   });
 
   // Creates a Note
+
+
+
   $(".addNoteButton").on("click", function(event) {
     event.preventDefault();
 
     let articleId = $(this).data("id");
+    articleArr = [];
+    articleArr.push(articleId);
+
     console.log(articleId);
     $(".noteModalBody").empty();
     $(".noteAlert").remove();
@@ -55,11 +62,11 @@ $(function() {
 
           // Apends note to modal
           $(".noteModalHeader").append(
-            "<h2>" + title + "</h2><hr><h4>" + body + "</h4"
+            "<div class='noteDiv'><h2>" + title + "</h2><br><hr><h4>" + body + "</h4><br><button class='btn btn-secondary delNoteBtn'>delete</button></div>"
           );
         }
 
-        $(".noteModalBody").append("<ul id='noteList'>");
+        // $(".noteModalBody").append("<ul id='noteList'>");
 
         let newForm = $("<form>");
 
@@ -90,7 +97,26 @@ $(function() {
         });
       })
       .then($("#noteModal").modal("show"));
-  });
+    });
+
+    var articleArr = [];
+
+
+
+    // Currently not working
+    // Deletes the note
+    $(".noteModalHeader").on("click", ".delNoteBtn", function(result){
+        $(".noteModalHeader").empty();
+        event.preventDefault();
+
+        $.ajax("api/delete/notes/" + articleArr, {
+          type: "DELETE",
+          success: function(result){
+        }
+        });
+    })
+
+
 
 //   Modal close, removes notes from modal
   $(".modalCloseBtn").on("click", function() {
@@ -118,10 +144,4 @@ $(function() {
         $("#bodyinput").val("");
       });
     });
-});
-
-$(".deleteNoteButton").on("click", function(event) {
-  event.preventDefault();
-
-  console.log("clicked");
 });

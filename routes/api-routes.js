@@ -183,10 +183,33 @@ module.exports = function(app) {
 
   // delete Note
   app.delete("/api/delete/notes/:id", (req, res) => {
-    db.Note.remove({
-      _id: req.params.id
+    let articleId = req.params.id;
+    
+    db.Note.findOneAndDelete({ 
+      _id: articleId
+    },
+    {
+      $set: {
+        note: ""
+      }
+      // _id: req.params.id
     }).then(function(result) {
       res.json(result);
     });
   });
 };
+
+
+
+
+
+// app.delete("/api/delete/notes/:id", (req, res) => {
+    
+//   db.Note.remove({
+//     _id: req.params.id
+//     db.Headline.deleteOne({ _id:})
+//   }).then(function(result) {
+//     res.json(result);
+//   });
+// });
+// };
