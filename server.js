@@ -19,7 +19,8 @@ app.use(express.json());
 app.use(express.static("public"));
 
 mongoose.Promise = Promise;
-mongoose.connect(MONGODB_URI, {
+mongoose.connect(MONGODB_URI || "mongodb://userRoot:passwordRoot1@ds145916.mlab.com:45916/heroku_frj9x7s3", {
+    useMongoClient: true
 });
 
 require("./routes/index.js")(app);
