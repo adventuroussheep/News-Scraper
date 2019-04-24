@@ -1,0 +1,112 @@
+{{!-- NavBar --}}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">NPR Scraper</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/saved">Favorites</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+{{!-- JumboTron --}}
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">Favorites</h1>
+  </div>
+</div>
+
+
+
+
+{{!-- Saved article divs --}}
+<div class="articleContainer">
+    <div class="row">
+
+        <div class="col-1">
+        </div>
+
+        <div class="col-10 articleColumn">
+
+            {{#each articles}}
+
+                <div class="card">
+                    <div class="card-header">
+                        <a class="headlineLink" href={{link}} target="_blank">{{headline}}</a>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+
+                            <div class="col-10">
+                                <p>{{summary}}</p>
+                            </div>
+
+                            <div class="col-2 buttonColumn">
+                                <div class="row buttonRow">
+                                    <div class="col-12">
+                                          <button type="button" class="btn btn-outline-warning deleteSavedArticleButton" data-id={{id}}>Delete Article</button>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row buttonRow">
+                                    <div class="col-12">
+                                          <button type="button" class="btn btn-outline-warning addNoteButton" data-id={{id}} data-notes={{notes}}>Add Note</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            {{/each}}
+
+        </div>
+
+        <div class="col-1">
+        </div>
+
+    </div>
+</div>
+
+
+{{!-- Modal for delete success --}}
+<div class="modal fade" id="articleDeleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title articleDeleteTitle" >Success!</h5>
+      </div>
+      <div class="modal-body articleDeleteBody">
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary deleteSavedArticleModalButton" id="deleteSavedArticleModalButton" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{{!-- Modal to save note--}}
+<div class="modal fade" id="noteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header noteModalHeader">
+      </div>
+      <div class="modal-body noteModalBody">
+        
+      </div>
+      <button class='saveNoteButton btn-outline-success'>Save Note</button>
+      <div class='alertDiv'></div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary modalCloseBtn" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,44 @@
+.card-header{
+    background-color: #4b4d51;
+}
+
+.headlineLink {
+    color: white;
+    font-size: 30px;
+}
+
+.card {
+    margin-bottom: 30px;
+}
+
+p{
+    font-size: 22px;
+}
+body {
+    background-image: url("../images/globeBg.jpg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
+
+.navbar{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 5;
+}
+
+.saveArticleButton {
+    margin-top: 2em;
+}
+
+.jumbotron{
+    text-align: center;
+}
+
+.saveNoteButton{
+    width: 100px;
+    margin-left: 40%;
+    padding: 10px;
+}
